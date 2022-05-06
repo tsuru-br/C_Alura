@@ -4,11 +4,12 @@
 
 int main(void)
 {	
-	int secretNumber = 26;
+	float secretNumber = 26.0;
 	int count = 1;	
-	int chute = 0;
+	float chute = 0;
 	int acertou = 0;
-	int pontos = 1000;
+	float pontos = 1000;
+	float pontos_perdidos = 0;
 
 	printf("******************************************\n");
 	printf("* Bem vindo ao nosso jogo de adivinhação *\n");
@@ -17,7 +18,7 @@ int main(void)
 		printf("******************************************\n");
 		printf("\tTentativa: %d", count);
 		printf("\nQual o seu chute? ");
-		scanf("%d", &chute);
+		scanf("%f", &chute);
 
 		if(chute < 0)
 		{
@@ -39,11 +40,11 @@ int main(void)
 		}
 		else if(maior)
 		{
-			printf("Seu chute (%d) foi maior que o número secreto.\n", chute);
+			printf("Seu chute (%.2f) foi maior que o número secreto.\n", chute);
 		}
 		else
 		{
-			printf("Seu chute (%d) foi menor que o número secreto.\n", chute);
+			printf("Seu chute (%.2f) foi menor que o número secreto.\n", chute);
 		}
 		count++;
 
@@ -53,11 +54,19 @@ int main(void)
 			break;
 		}
 
-		int pontos_perdidos = (chute - secretNumber) / 2; // teria que modular para ser só positivo
+
+		if (chute > secretNumber) // Para que os pontos_perdidos não sejam negativos (secretNumber precisa ser menor)
+		{
+			pontos_perdidos = (chute - secretNumber) / 2.0;
+		} 
+		else // caso o chute seja menor do que o secretNumber (chutou baixo), então é invertido para não negativar
+		{
+			pontos_perdidos = (secretNumber - chute) / 2.0;
+		}
 		pontos = pontos - pontos_perdidos;	
 	}
 	printf("Fim de Jogo!\n");
-	printf("\nTotal de Pontos: %d\n", pontos);
+	printf("\nTotal de Pontos: %.2f\n", pontos);
 
 	return 0;
 }
