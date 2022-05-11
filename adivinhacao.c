@@ -40,11 +40,11 @@ int main(void)
 		}
 		else if(maior)
 		{
-			printf("Seu chute (%.2f) foi maior que o número secreto.\n", chute);
+			printf("Seu chute (%.0f) foi maior que o número secreto.\n", chute);
 		}
 		else
 		{
-			printf("Seu chute (%.2f) foi menor que o número secreto.\n", chute);
+			printf("Seu chute (%.0f) foi menor que o número secreto.\n", chute);
 		}
 		count++;
 
@@ -57,7 +57,7 @@ int main(void)
 
 		if (chute > secretNumber) // Para que os pontos_perdidos não sejam negativos (secretNumber precisa ser menor)
 		{
-			pontos_perdidos = (chute - secretNumber) / 2.0;
+			pontos_perdidos = (chute - secretNumber) / (float)2;
 		} 
 		else // caso o chute seja menor do que o secretNumber (chutou baixo), então é invertido para não negativar
 		{
